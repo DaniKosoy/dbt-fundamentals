@@ -7,8 +7,12 @@ with orders as (
         status
 
     from {{ source('jaffle_shop', 'orders') }}
+    
+    {{limit_data_in_dev(column_name='order_date', dev_days_of_data=0)}}
 
 )
 
 select *
 from orders
+
+
